@@ -1,2 +1,3 @@
 ---
 # defaults file for preamble
+bootstrap_user: 'root'

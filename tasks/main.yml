@@ -1,2 +1,28 @@
 ---
 # tasks file for preamble
+- name: Check Connection
+  ping:
+  ignore_errors: yes
+  ignore_unreachable: yes
+  register: ping
+
+- name: Set Connection Status
+  set_fact:
+    reachable: "{{ 'success' in ping }}"
+    bootstrap_username: "{{ ansible_user }}"
+
+- name: Set Username
+  set_fact:
+    bootstrap_user: "{{ ansible_user }}"
+  when: reachable
+
+- name: Setup Service User
+  vars:
+    ansible_user: "{{ bootstrap_user }}"
+  block:
+  - name: "Create User {{ bootstrap_username }}"
+    user:
+      name: "{{ bootstrap_username }}"
+      system: yes
+      password_lock: yes
+    register: status

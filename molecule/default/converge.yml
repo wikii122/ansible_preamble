@@ -1,6 +1,9 @@
 ---
 - name: Converge
   hosts: all
+  gather_facts: no
+  vars:
+    ansible_user: ansible
   tasks:
     - name: "Include preamble"
       include_role:
