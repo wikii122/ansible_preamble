@@ -27,6 +27,11 @@ Including an example of how to use your role (for instance, with variables passe
       roles:
       - wikii122.preamble
 
+Variables
+---------
+
+- preamble_user - fallback username, by default root, used to setup host when main user was not yet created.
+
 License
 -------
 
