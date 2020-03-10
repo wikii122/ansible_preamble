@@ -24,5 +24,6 @@
     user:
       name: "{{ preamble_username }}"
       system: yes
+      shell: /bin/nologin
       password_lock: yes
-    register: status
+    register: user
