@@ -1,26 +1,26 @@
 ---
 # tasks file for preamble
-- name: Check Connection
+- name: Check connection
   ping:
   ignore_errors: yes
   ignore_unreachable: yes
   register: ping
 
-- name: Set Connection Status
+- name: Set connection status
   set_fact:
     reachable: "{{ 'success' in ping }}"
     preamble_username: "{{ ansible_user }}"
 
-- name: Set Username
+- name: Set username
   set_fact:
     preamble_user: "{{ ansible_user }}"
   when: reachable
 
-- name: Setup Service User
+- name: Setup service user
   vars:
     ansible_user: "{{ preamble_user }}"
   block:
-  - name: "Create User {{ preamble_username }}"
+  - name: "Create user {{ preamble_username }}"
     user:
       name: "{{ preamble_username }}"
       system: yes
