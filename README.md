@@ -11,7 +11,7 @@ TBD
 Role Variables
 --------------
 
-TBD
+- preamble_user - fallback username, by default root, used to setup host when main user was not yet created.
 
 Dependencies
 ------------
@@ -26,11 +26,6 @@ Including an example of how to use your role (for instance, with variables passe
     - hosts: all
       roles:
       - wikii122.preamble
-
-Variables
----------
-
-- preamble_user - fallback username, by default root, used to setup host when main user was not yet created.
 
 License
 -------
