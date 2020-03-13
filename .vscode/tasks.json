@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Molecule converge",
+            "type": "shell",
+            "command": "poetry run molecule converge",
+            "problemMatcher": []
+        },
+        {
+            "label": "Molecule test",
+            "type": "shell",
+            "command": "poetry run molecule test",
+            "problemMatcher": []
+        },
+        {
+            "label": "Molecule destroy",
+            "type": "shell",
+            "command": "poetry run molecule destroy",
+            "problemMatcher": []
+        },
+        {
+            "label": "Molecule create",
+            "type": "shell",
+            "command": "poetry run molecule create",
+            "problemMatcher": []
+        }
+    ]
+}
