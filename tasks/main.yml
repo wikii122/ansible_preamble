@@ -1,6 +1,6 @@
 ---
 # tasks file for preamble
-- name: Check connection
+- name: Check Connection
   ping:
   ignore_errors: yes
   ignore_unreachable: yes
@@ -26,4 +26,21 @@
       system: yes
       shell: /bin/nologin
       password_lock: yes
+      comment: Ansible Management User
     register: user
+
+  - name: "Add user {{ preamble }} to sudo"
+    lineinfile:
+      path: /etc/sudoers.d/ansible
+      line: 'ansible ALL=(ALL) NOPASSWD: ALL'
+      state: present
+      mode: 0440
+      create: yes
+      validate: "/usr/sbin/visudo -cf %s"
+  
+  - name: Set includedir in sudoers
+    lineinfile:
+      dest: /etc/sudoers
+      line: "#includedir /etc/sudoers.d"
+      state: present
+      validate: "/usr/sbin/visudo -cf %s"

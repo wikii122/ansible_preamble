@@ -3,7 +3,14 @@
 
 - name: Verify
   hosts: all
+  vars:
+    ansible_user: ansible
   tasks:
-  - name: Example assertion
-    assert:
-      that: true
+  - name: Check if user was created
+    ping:  # Asserting makes no sense, it would raise unreachable if error
+
+  - name: Check if user can sudo
+    become: yes
+    file:
+      path: /etc/foo.conf
+      state: touch
