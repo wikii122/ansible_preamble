@@ -1,0 +1,24 @@
+---
+- name: Create ssh key
+  when: not preamble_ssh_key
+  block:
+  - name: Set facts
+    set_fact:
+      ssh_key_path: "{{ ansible_env.HOME }}/.ssh/{{ preamble_user }}_rsa"
+
+  - name: Generate ssh key locally
+    openssh_keypair:
+      path: "{{ ssh_key_path }}"
+      size: 2048
+    delegate_to: localhost
+    run_once: yes
+
+  - name: Read ssh key
+    set_fact:
+      preamble_ssh_key: "{{ lookup('file', ssh_key_path + '.pub') }}"
+
+- name: Add ssh key to authorized_hosts
+  authorized_key:
+    user: "{{ preamble_user }}"
+    state: present
+    key: "{{ preamble_ssh_key }}"

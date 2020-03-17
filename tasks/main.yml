@@ -1,5 +1,4 @@
 ---
-# tasks file for preamble
 - name: Check Connection
   ping:
   ignore_errors: yes
@@ -9,38 +8,23 @@
 - name: Set connection status
   set_fact:
     reachable: "{{ 'success' in ping }}"
-    preamble_username: "{{ ansible_user }}"
-
-- name: Set username
-  set_fact:
     preamble_user: "{{ ansible_user }}"
+
+- name: Set user
+  set_fact:
+    preamble_reachable_user: "{{ ansible_user }}"
   when: reachable
 
 - name: Setup service user
   vars:
-    ansible_user: "{{ preamble_user }}"
+    ansible_user: "{{ preamble_reachable_user }}"
   block:
-  - name: "Create user {{ preamble_username }}"
-    user:
-      name: "{{ preamble_username }}"
-      system: yes
-      shell: /bin/nologin
-      password_lock: yes
-      comment: Ansible Management User
-    register: user
+  - name: Gather Facts
+    setup:
 
-  - name: "Add user {{ preamble }} to sudo"
-    lineinfile:
-      path: /etc/sudoers.d/ansible
-      line: 'ansible ALL=(ALL) NOPASSWD: ALL'
-      state: present
-      mode: 0440
-      create: yes
-      validate: "/usr/sbin/visudo -cf %s"
-  
-  - name: Set includedir in sudoers
-    lineinfile:
-      dest: /etc/sudoers
-      line: "#includedir /etc/sudoers.d"
-      state: present
-      validate: "/usr/sbin/visudo -cf %s"
+  - name: Setup service user
+    include_tasks: user.yml
+
+  - name: Setup ssh access to user
+    include_tasks: ssh.yml
+    when: ansible_connection in preamble_ssh_connection_types
