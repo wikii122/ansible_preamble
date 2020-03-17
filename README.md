@@ -12,7 +12,7 @@ Role Variables
 --------------
 
 - preamble_user - fallback user, by default root, used to setup host when main user was not yet created.
-- preamble_ssh_key - ssh key to use (otherwise it will generate it's own in ~/.ssh/{preamble_user}_rsa on localhost)
+- preamble_ssh_key - ssh key to use for service user
 
 Dependencies
 ------------
