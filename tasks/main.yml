@@ -8,16 +8,16 @@
 - name: Set connection status
   set_fact:
     reachable: "{{ 'success' in ping }}"
-    preamble_user: "{{ ansible_user }}"
+    preamble_unreachable_user: "{{ ansible_user }}"
 
 - name: Set user
   set_fact:
-    preamble_reachable_user: "{{ ansible_user }}"
+    preamble_user: "{{ ansible_user }}"
   when: reachable
 
 - name: Setup service user
   vars:
-    ansible_user: "{{ preamble_reachable_user }}"
+    ansible_user: "{{ preamble_user }}"
   block:
   - name: Gather Facts
     setup:
