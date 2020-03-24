@@ -10,6 +10,7 @@
     reachable: "{{ 'success' in ping }}"
     preamble_ansible_user: "{{ ansible_user }}"
 
+# When default user is available, we should use it.
 - name: Set user
   set_fact:
     preamble_user: "{{ ansible_user }}"

@@ -1,5 +1,5 @@
 ---
 # defaults file for preamble
 preamble_user: 'root'
-preamble_ssh_key:
+preamble_ssh_keys: []
 preamble_ssh_connection_types: ['smart', 'ssh', 'paramiko']

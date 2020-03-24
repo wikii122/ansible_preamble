@@ -3,4 +3,5 @@
   authorized_key:
     user: "{{ preamble_ansible_user }}"
     state: present
-    key: "{{ preamble_ssh_key }}"
+    key: "{{ item }}"
+  with_items: "{{ preamble_ssh_keys }}"
