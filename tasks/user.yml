@@ -1,17 +1,18 @@
 ---
-- name: "Create user {{ preamble_unreachable_user }}"
+- name: "Create user {{ preamble_ansible_user }}"
   user:
-    name: "{{ preamble_unreachable_user }}"
+    name: "{{ preamble_ansible_user }}"
     system: yes
     shell: /bin/nologin
     password_lock: yes
     comment: Ansible Management User
   register: user
 
-- name: "Add user {{ preamble_unreachable_user }} to sudo"
-  lineinfile:
+- name: "Add user {{ preamble_ansible_user }} to sudo"
+  blockinfile:
     path: /etc/sudoers.d/ansible
-    line: 'ansible ALL=(ALL) NOPASSWD: ALL'
+    block: |
+      {{ preamble_ansible_user }} ALL=(ALL) NOPASSWD: ALL
     state: present
     mode: 0440
     create: yes

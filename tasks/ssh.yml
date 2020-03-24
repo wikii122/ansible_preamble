@@ -1,6 +1,6 @@
 ---
 - name: Add ssh key to authorized_hosts
   authorized_key:
-    user: "{{ preamble_unreachable_user }}"
+    user: "{{ preamble_ansible_user }}"
     state: present
     key: "{{ preamble_ssh_key }}"
