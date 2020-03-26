@@ -1,4 +1,17 @@
 ---
+- name: Create ssh key for hosts
+  when: preamble_generate_ssh_key
+  block:
+  - name: Generate new key on control node
+    openssh_keypair:
+      path: "~/.ssh/{{ preamble_ansible_user }}_rsa"
+    register: keypair
+    delegate_to: localhost
+    run_once: yes
+  - name: Add keypair to key list
+    set_fact:
+      preamble_ssh_keys: "{{ preamble_ssh_keys + [keypair.public_key] }}"
+
 - name: Add ssh key to authorized_hosts
   authorized_key:
     user: "{{ preamble_ansible_user }}"

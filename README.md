@@ -11,8 +11,9 @@ TBD
 Role Variables
 --------------
 
-- preamble_user - fallback user, by default root, used to setup host when main user was not yet created.
+- preamble_user - fallback user, by default root, used to setup host when main user was not yet created
 - preamble_ssh_key - ssh key to use for service user
+- preamble_generate_ssh_key - generate new ssh key for service user on control node
 
 Dependencies
 ------------

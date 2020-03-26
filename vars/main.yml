@@ -1,2 +1,3 @@
 ---
 # vars file for preamble
+preamble_ssh_connection_types: ['smart', 'ssh', 'paramiko']
