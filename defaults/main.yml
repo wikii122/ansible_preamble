@@ -2,4 +2,4 @@
 # defaults file for preamble
 preamble_user: 'root'
 preamble_ssh_keys: []
-preamble_generate_ssh_key: yes
+preamble_generate_ssh_key: no
