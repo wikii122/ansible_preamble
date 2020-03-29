@@ -17,4 +17,4 @@
     user: "{{ preamble_ansible_user }}"
     state: present
     key: "{{ item }}"
-  with_items: "{{ preamble_ssh_keys }}"
+  loop: "{{ preamble_ssh_keys }}"
