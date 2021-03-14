@@ -3,7 +3,7 @@
   user:
     name: "{{ preamble_ansible_user }}"
     system: yes
-    shell: /bin/nologin
+    shell: /bin/bash
     password_lock: yes
     comment: Ansible Management User
   register: user
