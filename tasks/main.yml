@@ -17,6 +17,7 @@
   when: reachable
 
 - name: Setup service user
+  become: yes
   vars:
     ansible_user: "{{ preamble_user }}"
   block:
