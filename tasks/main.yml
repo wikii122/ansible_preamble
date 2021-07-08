@@ -1,32 +1,32 @@
 ---
-- name: Check Connection
+- name: Checking connection
   ping:
   ignore_errors: yes
   ignore_unreachable: yes
   register: ping
 
-- name: Set connection status
+- name: Setting connection status
   set_fact:
     reachable: "{{ 'unreachable' not in ping }}"
     preamble_ansible_user: "{{ ansible_user }}"
 
 # When default user is available, we should use it.
-- name: Set user
+- name: Setting user
   set_fact:
     preamble_user: "{{ ansible_user }}"
   when: reachable
 
-- name: Setup service user
+- name: Setting up service user
   become: yes
   vars:
     ansible_user: "{{ preamble_user }}"
   block:
-  - name: Gather Facts
+  - name: Gathering Facts
     setup:
 
-  - name: Setup service user
+  - name: Setting up service user
     include_tasks: user.yml
 
-  - name: Setup ssh access to user
+  - name: Setting up SSH access to user
     include_tasks: ssh.yml
     when: ansible_connection in preamble_ssh_connection_types

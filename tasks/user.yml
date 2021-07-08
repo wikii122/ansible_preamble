@@ -1,5 +1,5 @@
 ---
-- name: "Create user {{ preamble_ansible_user }}"
+- name: "Creating user {{ preamble_ansible_user }}"
   user:
     name: "{{ preamble_ansible_user }}"
     system: yes
@@ -8,7 +8,7 @@
     comment: Ansible Management User
   register: user
 
-- name: "Add user {{ preamble_ansible_user }} to sudo"
+- name: "Enabling sudo for user {{ preamble_ansible_user }}"
   blockinfile:
     path: /etc/sudoers.d/ansible
     block: |
@@ -18,7 +18,7 @@
     create: yes
     validate: "/usr/sbin/visudo -cf %s"
 
-- name: Set includedir in sudoers
+- name: Including config in sudoers
   lineinfile:
     dest: /etc/sudoers
     line: "#includedir /etc/sudoers.d"
