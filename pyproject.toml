@@ -7,7 +7,7 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.5"
-ansible = "^2.9.6"
+ansible = "^4.2.0"
 
 [tool.poetry.dev-dependencies]
 molecule = {extras = ["docker"], version = "^3.0.2"}
