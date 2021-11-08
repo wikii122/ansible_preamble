@@ -7,7 +7,7 @@
 
 - name: Setting connection status
   set_fact:
-    reachable: "{{ 'unreachable' not in ping }}"
+    reachable: "{{ ping is succeeded }}"
     preamble_ansible_user: "{{ ansible_user }}"
 
 # When default user is available, we should use it.

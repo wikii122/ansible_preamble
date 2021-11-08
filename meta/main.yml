@@ -1,7 +1,9 @@
 galaxy_info:
   author: Wiktor Ślęczka <wikii122@gmail.com>
-  description: Role used to bootstrap host for further roles
+
+  namespace: wikii122
   role_name: preamble
+  description: Role used to bootstrap host for further roles
 
   license: MIT
 
