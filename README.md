@@ -6,9 +6,10 @@ Module used to bootstrap server with system user and some basic initialization f
 Requirements
 ------------
 
-TBD
+By design there is none. But for fallback connection to another user to work role must
+have gathering facts disabled.
 
-Role Variables
+ Variables
 --------------
 
 - preamble_user - fallback user, by default root, used to setup host when main user was not yet created (default: `root`)
@@ -25,6 +26,7 @@ Example Playbook
 
     - hosts: all
       roles:
+      gather_facts: no  # Required
       - wikii122.preamble
 
 License
