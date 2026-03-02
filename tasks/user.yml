@@ -20,7 +20,7 @@
 
 - name: Including config in sudoers
   lineinfile:
-    dest: /etc/sudoers
+    path: /etc/sudoers
     line: "#includedir /etc/sudoers.d"
     state: present
     validate: "/usr/sbin/visudo -cf %s"

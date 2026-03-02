@@ -1,7 +1,7 @@
 ---
 - name: Checking connection
   ping:
-  ignore_errors: yes
+  failed_when: false
   ignore_unreachable: yes
   register: ping
 
